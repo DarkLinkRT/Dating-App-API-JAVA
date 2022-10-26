@@ -10,7 +10,11 @@ const db = {};
 
 db.sequelize = sequelize;
 
-class Users extends Sequelize.Model {}
+class Users extends Sequelize.Model {
+
+  
+
+}
 Users.init(
   {
     firstName: {
@@ -42,25 +46,33 @@ Users.init(
   }
 )
 
-class Match extends Sequelize.Model {}
-Match.init(
+class Matches extends Sequelize.Model {}
+Matches.init(
   {
-    created_at: {
+    userOne:{
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    userTwo:{
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    createdAt: {
       type: Sequelize.DATEONLY,
-      defaultValue: Sequelize.fn('now'),
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       allowNull: false
     }
   },
   {
     sequelize,
-    modelName: 'Match'
+    modelName: 'Matches'
   }
 )
 
 module.exports = {
   sequelize,
   Users,
-  Match,
+  Matches,
   db
 };
 
