@@ -10,11 +10,8 @@ const db = {};
 
 db.sequelize = sequelize;
 
-class Users extends Sequelize.Model {
+class Users extends Sequelize.Model {}
 
-  
-
-}
 Users.init(
   {
     firstName: {
@@ -49,14 +46,6 @@ Users.init(
 class Matches extends Sequelize.Model {}
 Matches.init(
   {
-    userOne:{
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    userTwo:{
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
     createdAt: {
       type: Sequelize.DATEONLY,
       defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
@@ -68,6 +57,12 @@ Matches.init(
     modelName: 'Matches'
   }
 )
+
+//Relationship
+Users.hasMany(Matches, { as: 'relationUserOne', foreignKey: 'userOne' })
+Matches.belongsTo(Users, { as: 'relationUserOne' })
+Users.hasMany(Matches, { as: 'relationUserTwo', foreignKey: 'userTwo' })
+Matches.belongsTo(Users, { as: 'relationUserTwo' })
 
 module.exports = {
   sequelize,
