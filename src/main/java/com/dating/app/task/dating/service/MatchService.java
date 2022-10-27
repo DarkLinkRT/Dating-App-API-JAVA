@@ -9,7 +9,7 @@ public interface MatchService {
     List<Match> searchPossibleMatchesByUser(Long id);
 
     //Listar posibles matches
-    List<Match> getAllPossibleMatches(Long id);
+    List<Match> getAllMatchesByUser(Long id);
     //Guadar match
     void saveMatch(Match match);
 }

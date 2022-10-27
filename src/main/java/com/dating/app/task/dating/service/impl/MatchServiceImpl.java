@@ -18,10 +18,10 @@ public class MatchServiceImpl implements MatchService {
 
     //Listar
     @Override
-    public List<Match> searchPossibleMatchesByUser(Long id){ return (List<Match>) matchRepository.searchMatchesByUser( id );}
+    public List<Match> searchPossibleMatchesByUser(Long id){ return (List<Match>) matchRepository.searchPossibleMatchesByUser( id );}
     //Listar posibles matches
     @Override
-    public List<Match> getAllPossibleMatches(Long id){ return (List<Match>) matchRepository.searchMatchesByUser( id );}
+    public List<Match> getAllMatchesByUser(Long id){ return (List<Match>) matchRepository.getAllMatchesByUser( id );}
     //Guardar match
     public void saveMatch(Match match){
         if(match.getUserOne() == null){

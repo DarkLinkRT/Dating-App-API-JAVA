@@ -23,14 +23,16 @@ public class MatchController {
     @GetMapping("/all/user/{id}")
     private ResponseEntity<?> findAllMatches(@PathVariable Long id){
         response.clear();
-        response.put("matches",matchService.searchPossibleMatchesByUser(id));
+        matchService.searchPossibleMatchesByUser(id);
+        response.put("message",matchService.getAllMatchesByUser(id));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     //Listar posibles matches
     @GetMapping("/find/user/{id}")
     private ResponseEntity<?> findAllPossibleMatches(@PathVariable Long id){
         response.clear();
-        response.put("matches",matchService.getAllPossibleMatches(id));
+        matchService.searchPossibleMatchesByUser(id);
+        response.put("message",matchService.searchPossibleMatchesByUser(id));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     //Guardar un match
