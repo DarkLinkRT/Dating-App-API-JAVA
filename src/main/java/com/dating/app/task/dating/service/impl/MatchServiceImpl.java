@@ -25,10 +25,10 @@ public class MatchServiceImpl implements MatchService {
     //Guardar match
     public void saveMatch(Match match){
         if(match.getUserOne() == null){
-            new NoSuchElementException("El usuario no debe ir vacio");
+            new Exception("El usuario no debe ir vacio");
         }
         if(match.getUserTwo() == null){
-            new NoSuchElementException("El usuario dos no debe ir vacio");
+            new Exception("El usuario dos no debe ir vacio");
         }
         match.setCreatedAt( new Date() );
         matchRepository.save(match);

@@ -16,7 +16,10 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column( name = "user_one")
     private Long userOne;
+    @Column( name = "user_two")
     private Long userTwo;
+    @Column( name = "created_at")
     private Date createdAt;
 }

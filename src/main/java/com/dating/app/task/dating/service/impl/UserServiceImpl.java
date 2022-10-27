@@ -3,6 +3,7 @@ package com.dating.app.task.dating.service.impl;
 import com.dating.app.task.dating.model.User;
 import com.dating.app.task.dating.repository.UserRepository;
 import com.dating.app.task.dating.service.UserService;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,18 +30,18 @@ public class UserServiceImpl implements UserService {
         /** VALIDACIONES **/
 
         if(user.getEmail() == null || user.getEmail() == ""){
-            new NoSuchElementException("El Email no puede ir vacio");
+             new Exception("El Email no puede ir vacio");
         } else{
             User user1 = userRepository.findByEmail(user.getEmail());
             if(user1.getEmail() == user.getEmail()){
-                new NoSuchElementException("Este correo ya se encuentra registrado");
+                new Exception("Este correo ya se encuentra registrado");
             }
         }
         if(user.getFirstName() == null || user.getFirstName() == ""){
-            new NoSuchElementException("El Primer Nombre no puede ir vacio");
+            new Exception("El Primer Nombre no puede ir vacio");
         }
         if(user.getLastName() == null || user.getLastName() == ""){
-            new NoSuchElementException("El Apellido no puede ir vacio");
+            new Exception("El Apellido no puede ir vacio");
         }
 
         boolean isGenderCorrect = false;
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
                 break;
             }
         }
-        if(!isGenderCorrect){ new NoSuchFieldError("Solo se aceptan estas opciones para Genero [female][male]"); }
+        if(!isGenderCorrect){ new Exception("Solo se aceptan estas opciones para Genero [female][male]"); }
 
         boolean isSexualOrientationCorrect = false;
         for( String orientation : this.sexualOrientations ){
@@ -59,7 +60,7 @@ public class UserServiceImpl implements UserService {
                 break;
             }
         }
-        if(!isSexualOrientationCorrect){ new NoSuchFieldError("Solo se aceptan estas opciones para Orientacion Sexual [heterosexual][bisexual][homosexual][other] "); }
+        if(!isSexualOrientationCorrect){ new Exception("Solo se aceptan estas opciones para Orientacion Sexual [heterosexual][bisexual][homosexual][other] "); }
 
         boolean isHobbieCorrect = true;
         for( String hobbie : this.hobbies ){
@@ -71,7 +72,7 @@ public class UserServiceImpl implements UserService {
                 }
             }
         }
-        if(!isHobbieCorrect){ new NoSuchFieldError("Solo se aceptan estas opciones para Hobbie(Separadas por coma si son muchas) [sing][dance][run][swim][watch series]"); }
+        if(!isHobbieCorrect){ new Exception("Solo se aceptan estas opciones para Hobbie(Separadas por coma si son muchas) [sing][dance][run][swim][watch series]"); }
 
         userRepository.save(user);
     }
