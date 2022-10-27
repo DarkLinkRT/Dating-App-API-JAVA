@@ -61,11 +61,14 @@ public class UserServiceImpl implements UserService {
         }
         if(!isSexualOrientationCorrect){ new NoSuchFieldError("Solo se aceptan estas opciones para Orientacion Sexual [heterosexual][bisexual][homosexual][other] "); }
 
-        boolean isHobbieCorrect = false;
+        boolean isHobbieCorrect = true;
         for( String hobbie : this.hobbies ){
-            if( hobbie == user.getHobbies() ){
-                isHobbieCorrect = true;
-                break;
+            String[] hobbiesUser = user.getHobbies().split(",");
+            for(String hobbieUser : hobbiesUser) {
+                if( hobbie != user.getHobbies() ){
+                    isHobbieCorrect = false;
+                    break;
+                }
             }
         }
         if(!isHobbieCorrect){ new NoSuchFieldError("Solo se aceptan estas opciones para Hobbie(Separadas por coma si son muchas) [sing][dance][run][swim][watch series]"); }
