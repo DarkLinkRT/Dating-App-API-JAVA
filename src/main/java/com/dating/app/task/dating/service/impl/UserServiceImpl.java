@@ -63,10 +63,10 @@ public class UserServiceImpl implements UserService {
         if(!isSexualOrientationCorrect){ new Exception("Solo se aceptan estas opciones para Orientacion Sexual [heterosexual][bisexual][homosexual][other] "); }
 
         boolean isHobbieCorrect = true;
+        String[] hobbiesUser = user.getHobbies().split(",");
         for( String hobbie : this.hobbies ){
-            String[] hobbiesUser = user.getHobbies().split(",");
             for(String hobbieUser : hobbiesUser) {
-                if( hobbie != user.getHobbies() ){
+                if( hobbie != hobbieUser ){
                     isHobbieCorrect = false;
                     break;
                 }

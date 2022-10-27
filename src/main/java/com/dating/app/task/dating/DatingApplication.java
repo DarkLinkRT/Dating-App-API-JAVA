@@ -2,6 +2,13 @@ package com.dating.app.task.dating;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@ComponentScan(basePackages = {"com.dating.app.task.dating.service"})
+@ComponentScan(basePackages = {"com.dating.app.task.dating.service.impl"})
+@ComponentScan(basePackages = {"com.dating.app.task.dating.controller"})
+@ComponentScan(basePackages = {"com.dating.app.task.dating.model"})
+@ComponentScan(basePackages = {"com.dating.app.task.dating.repository"})
 
 @SpringBootApplication
 public class DatingApplication {
