@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/match")
+@RequestMapping("/matches")
 public class MatchController {
 
     @Autowired

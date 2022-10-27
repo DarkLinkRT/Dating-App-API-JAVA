@@ -13,7 +13,7 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
     Match searchPossibleMatchesByUser(Long id);
 
     //Encontrar matches por usuario
-    @Query("SELECT * FROM match JOIN user ON user.id = match.UserTwo AND match.UserOne = ?1")
+    @Query("SELECT * FROM matches JOIN user ON user.id = matches.UserTwo AND matches.UserOne = ?1")
     Match searchMatchesByUser(Long id);
 
 }
