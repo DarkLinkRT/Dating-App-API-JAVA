@@ -1,7 +1,6 @@
 package com.dating.app.task.dating.service.impl;
 
 import com.dating.app.task.dating.model.Match;
-import com.dating.app.task.dating.model.User;
 import com.dating.app.task.dating.repository.MatchRepository;
 import com.dating.app.task.dating.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class MatchServiceImpl implements MatchService {
 
     //Listar
     @Override
-    public List<Match> getAllMatches(Long id){ return (List<Match>) matchRepository.searchMatchesByUser( id );}
+    public List<Match> searchPossibleMatchesByUser(Long id){ return (List<Match>) matchRepository.searchMatchesByUser( id );}
     //Listar posibles matches
     @Override
     public List<Match> getAllPossibleMatches(Long id){ return (List<Match>) matchRepository.searchMatchesByUser( id );}

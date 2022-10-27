@@ -1,7 +1,6 @@
 package com.dating.app.task.dating.controller;
 
 import com.dating.app.task.dating.model.Match;
-import com.dating.app.task.dating.model.User;
 import com.dating.app.task.dating.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +23,7 @@ public class MatchController {
     @GetMapping("/all/user/{id}")
     private ResponseEntity<?> findAllMatches(@PathVariable Long id){
         response.clear();
-        response.put("matches",matchService.getAllMatches(id));
+        response.put("matches",matchService.searchPossibleMatchesByUser(id));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     //Listar posibles matches
@@ -35,7 +34,7 @@ public class MatchController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     //Guardar un match
-    @GetMapping("/save")
+    @PostMapping("/save")
     private ResponseEntity<?> saveMatch(@RequestBody Match match){
         response.clear();
         matchService.saveMatch(match);
