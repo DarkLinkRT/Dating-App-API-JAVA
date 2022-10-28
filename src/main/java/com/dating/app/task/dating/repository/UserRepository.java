@@ -8,7 +8,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    //Encontrar email existente
+    /****
+     *
+     *  ENCONTRAR EMAIL REGISTRADO
+     *
+     * ***/
     @Query("SELECT email FROM user WHERE email = ?1")
     User findByEmail(String email);
 

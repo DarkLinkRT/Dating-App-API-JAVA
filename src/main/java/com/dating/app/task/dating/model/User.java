@@ -20,8 +20,8 @@ public class User {
     @Column( name = "last_name")
     private String lastName;
     private String email;
-    private String gender;
+    private UserGender gender;
     @Column( name = "sexual_orientation")
-    private String sexualOrientation;
-    private String hobbies;
+    private UserSexualOrientation sexualOrientation;
+    private UserHobbies[] hobbies;
 }

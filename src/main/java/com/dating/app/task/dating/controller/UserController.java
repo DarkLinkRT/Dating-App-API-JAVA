@@ -6,32 +6,56 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ *
+ * USER CONTROLLER
+ *
+ * */
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
-
     private Map<String,Object> response = new HashMap<>();
-    //Listar usuarios
+
+    /**
+     *
+     * Funcion para traer a todos los usuarios
+     *
+     * **/
     @GetMapping("/all")
-    private ResponseEntity<?> findAllusers(){
+    private ResponseEntity<?> getAllusers(){
         response.clear();
-        response.put("users",userService.getAllUsers());
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        try {
+            response.put("result",userService.getAllUsers());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e){
+            throw new ResponseStatusException(
+                    HttpStatus.EXPECTATION_FAILED, "an error ocurred", e
+            );
+        }
     }
-    //Guardar usuario
+    /**
+     *
+     * Funcion para guardar un usuario
+     *
+     * **/
     @PostMapping("/save")
     private ResponseEntity<?> saveUser(@RequestBody User user){
         response.clear();
-        userService.saveUser(user);
-        response.put("message" , "usuario guardado");
-        return  new ResponseEntity<>(response, HttpStatus.CREATED);
+        try {
+            response.put("result",userService.saveUser(user));
+            return  new ResponseEntity<>(response, HttpStatus.CREATED);
+        } catch (Exception e){
+            throw new ResponseStatusException(
+                    HttpStatus.EXPECTATION_FAILED, "an error ocurred", e
+            );
+        }
     }
 
 }

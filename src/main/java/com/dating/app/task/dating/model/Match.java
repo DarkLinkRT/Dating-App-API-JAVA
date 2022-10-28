@@ -16,10 +16,14 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column( name = "user_one")
-    private Long userOne;
-    @Column( name = "user_two")
-    private Long userTwo;
+    @ManyToMany
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Column(name = "user_id")
+    private User userId;
+    @ManyToMany
+    @JoinColumn(name = "user_match_id", referencedColumnName = "id")
+    @Column(name = "user_match_id")
+    private User userMatchId;
     @Column( name = "created_at")
     private Date createdAt;
 }
